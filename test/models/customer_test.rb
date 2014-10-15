@@ -9,7 +9,7 @@ class CustomerTest < ActiveSupport::TestCase
    test "name is required" do
      c = Customer.new
      refute c.save, 'name should be required'
-     assert c.errors.full_messages.include?("Name can't be blank")
+     assert c.errors.full_messages.include?("Name is required"), 'message should be \'Name is required\''
    end
 
    test "credit card is too short" do

@@ -9,7 +9,7 @@ class ProductTest < ActiveSupport::TestCase
    test "name is required" do
      product = Product.new
      refute product.save, 'name should be required'
-     assert product.errors.full_messages.include?("Name can't be blank")
+     assert product.errors.full_messages.include?("Name is required")
    end
 
    test "price is required" do
