@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20141013230154) do
   create_table "customers", force: true do |t|
     t.string   "name"
     t.string   "email"
+    t.integer  "credit_card_number"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "zip_code"

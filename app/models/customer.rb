@@ -7,6 +7,7 @@ class Customer < ActiveRecord::Base
   # validations
   validates :email, uniqueness: true
   validates :name, presence: true
+  validates :credit_card_number, length: {minimum: 16, maximum: 16}, allow_blank: false
 
   # callbacks
   after_create :send_confirmation_email
