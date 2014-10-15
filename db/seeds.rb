@@ -6,23 +6,17 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 1.times do
-  me = Customer.create(name: 'Paul Barry', email: 'mail@paulbarry.com')
-  test = Customer.create(name: 'John Doe', email: 'test@example.com')
-  Customer.create(name: 'Nowhere Man', email: 'man@nowhere.com')
-  15.times do
-    muffin = Product.create(name: 'Muffin', price: 2.99)
-    smoothie = Product.create(name: 'Smoothie', price: 3.75)
-    coffee = Product.create(name: 'Coffee', price: 3.99)
+  30.times do
+    Customer.create(name: Faker::Name.name, email: Faker::Internet.email)
+  end
+  30.times do
+    Product.create(name: Faker::Commerce.product_name, price: Faker::Commerce.price)
+  end
 
-    order = Order.create(customer: me, placed_at: '2013-09-27')
-    LineItem.create(order: order, quantity: 1, product: muffin)
-    LineItem.create(order: order, quantity: 1, product: smoothie)
-
-    order = Order.create(customer: me, placed_at: Time.current)
-    LineItem.create(order: order, quantity: 1, product: smoothie)
-
-    order = Order.create(customer: test, placed_at: Time.current)
-    LineItem.create(order: order, quantity: 1, product: muffin)
-    LineItem.create(order: order, quantity: 1, product: coffee)
+  30.times do
+    Order.create(customer:  Customer.find( rand(1..Customer.last.id) ), placed_at: Faker::Date.backward(30) )
+  end
+  30.times do
+    LineItem.create(order: Order.find( rand(1..Order.last.id) ), quantity: rand(1..5), product: Product.find( rand(1..Product.last.id) ) )
   end
 end
