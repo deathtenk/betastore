@@ -5,9 +5,9 @@ class Customer < ActiveRecord::Base
   has_many :products, :through => :line_items
 
   # validations
-  validates :email, uniqueness: true
+  # validates :email, uniqueness: true
   validates :name, presence: {message: 'is required'}
-  validates :credit_card_number, length: {minimum: 16, maximum: 16}, allow_blank: false
+  #validates :credit_card_number, length: {minimum: 16, maximum: 16}, allow_blank: false
 
   # callbacks
   after_create :send_confirmation_email
