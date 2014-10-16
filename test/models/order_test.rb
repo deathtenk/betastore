@@ -4,9 +4,7 @@ class OrderTest < ActiveSupport::TestCase
    test "total amount is set when saving order" do
      order = Order.new(customer: customers(:henk))
      order.save
-
      order.line_items.create(product: products(:hat), quantity: 2)
-
      assert_equal 19.98, order.total_amount
    end
 
